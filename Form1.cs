@@ -33,51 +33,45 @@ namespace PTSecondLabFirstTask
 
     public class Logic
     {
-        public static string GetAnswer(int trainArrivalTimeHours, int trainArrivalTimeMinutes, int trainDepartureTimeHours, int trainDepartureTimeMinutes, int passengerArrivalTimeHours, int passengerArrivalTimeMinutes)
+        public static string GetAnswer(int trainArriveH, int trainArriveM, int trainDepartH, int trainDepartM, int passH, int passM)
         {
-            bool willTheTrainBeOnThePlatform = willTrainBeOnPlatform(trainArrivalTimeHours, trainArrivalTimeMinutes, trainDepartureTimeHours, trainDepartureTimeMinutes, passengerArrivalTimeHours, passengerArrivalTimeMinutes);
+            bool willTrainPlatform = WillTrainBeOnPlatform(trainArriveH, trainArriveM, trainDepartH, trainDepartM, passH, passM);
 
-            return (willTheTrainBeOnThePlatform ? ("") : ("не ")) + "будет";
+            return (willTrainPlatform ? ("") : ("не ")) + "будет";
         }
 
-        private static bool willTrainBeOnPlatform(int trainArrivalTimeHours, int trainArrivalTimeMinutes, int trainDepartureTimeHours, int trainDepartureTimeMinutes, int passengerArrivalTimeHours, int passengerArrivalTimeMinutes)
+        private static bool WillTrainBeOnPlatform(int trainArriveH, int trainArriveM, int trainDepartH, int trainDepartM, int passH, int passM)
         {
-            const int numberOfMinutesPerHour = 60;
+            const int minutesPerHour = 60;
 
-            bool willTheTrainBeOnThePlatform = false;
+            bool willTrainPlatform = false;
 
-            int arrivalTotalMinutes = trainArrivalTimeHours * numberOfMinutesPerHour + trainArrivalTimeMinutes;
+            int arriveTotalM = trainArriveH * minutesPerHour + trainArriveM;
 
-            int departureTotalMinutes = trainDepartureTimeHours * numberOfMinutesPerHour + trainDepartureTimeMinutes;
+            int departTotalM = trainDepartH * minutesPerHour + trainDepartM;
 
-            int passengerTotalMinutes = passengerArrivalTimeHours * numberOfMinutesPerHour + passengerArrivalTimeMinutes;
+            int passTotalM = passH * minutesPerHour + passM;
 
-            // Поезд прибывает и отправляется в один и тот же день
-            if (arrivalTotalMinutes <= departureTotalMinutes)
+            if (arriveTotalM <= departTotalM)
             {
-                // Пассажир попал во временные рамки между прибытием и отправлением
-                // Пришёл позже прибытия, но раньше отправленмя
-                if (passengerTotalMinutes >= arrivalTotalMinutes && passengerTotalMinutes < departureTotalMinutes)
+                if (passTotalM >= arriveTotalM && passTotalM < departTotalM)
                 {
-                    willTheTrainBeOnThePlatform = true;
+                    willTrainPlatform = true;
                 }
             }
-            // Поезд прибывает сегодня и отправляется завтра
             else
             {
-                // Пассажир пришёл позже прибытия, но раньше конца суток
-                if (passengerTotalMinutes >= arrivalTotalMinutes)
+                if (passTotalM >= arriveTotalM)
                 {
-                    willTheTrainBeOnThePlatform = true;
+                    willTrainPlatform = true;
                 }
-                // Пользователь пришёл позже начала суток, но раньше отправления
-                else if (passengerTotalMinutes < departureTotalMinutes)
+                else if (passTotalM < departTotalM)
                 {
-                    willTheTrainBeOnThePlatform = true;
+                    willTrainPlatform = true;
                 }
             }
 
-            return willTheTrainBeOnThePlatform;
+            return willTrainPlatform;
         }
     }
 }

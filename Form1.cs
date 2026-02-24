@@ -9,7 +9,25 @@ namespace PTSecondLabFirstTask
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            DateTime arrivalTime = Convert.ToDateTime(this.arriveTimePicker.Value);
+
+            int trainArriveH = arrivalTime.Hour;
+
+            int trainArriveM = arrivalTime.Minute;
+
+            DateTime departureTime = Convert.ToDateTime(this.departureTimePicker.Value);
+
+            int trainDepartH = departureTime.Hour;
+
+            int trainDepartM = departureTime.Minute;
+
+            DateTime passengerTime = Convert.ToDateTime(this.passengerTimePicker.Value);
+
+            int passArriveH = passengerTime.Hour;
+
+            int passArriveM = passengerTime.Minute;
+
+            MessageBox.Show($"Поезд {Logic.GetAnswer(trainArriveH, trainArriveM, trainDepartH, trainDepartM, passArriveH, passArriveM)} стоять на платформе");
         }
     }
 
@@ -19,7 +37,7 @@ namespace PTSecondLabFirstTask
         {
             bool willTheTrainBeOnThePlatform = willTrainBeOnPlatform(trainArrivalTimeHours, trainArrivalTimeMinutes, trainDepartureTimeHours, trainDepartureTimeMinutes, passengerArrivalTimeHours, passengerArrivalTimeMinutes);
 
-            return willTheTrainBeOnThePlatform ? ("ДА") : ("НЕТ");
+            return (willTheTrainBeOnThePlatform ? ("") : ("не ")) + "будет";
         }
 
         private static bool willTrainBeOnPlatform(int trainArrivalTimeHours, int trainArrivalTimeMinutes, int trainDepartureTimeHours, int trainDepartureTimeMinutes, int passengerArrivalTimeHours, int passengerArrivalTimeMinutes)

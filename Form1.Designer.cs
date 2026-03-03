@@ -34,7 +34,7 @@
             departureTimePicker = new DateTimePicker();
             passengerTimePicker = new DateTimePicker();
             label3 = new Label();
-            button1 = new Button();
+            trainStatusLabel = new Label();
             SuspendLayout();
             // 
             // arriveTimePicker
@@ -46,6 +46,7 @@
             arriveTimePicker.ShowUpDown = true;
             arriveTimePicker.Size = new Size(70, 27);
             arriveTimePicker.TabIndex = 0;
+            arriveTimePicker.ValueChanged += arriveTimePicker_ValueChanged;
             // 
             // label1
             // 
@@ -76,6 +77,7 @@
             departureTimePicker.ShowUpDown = true;
             departureTimePicker.Size = new Size(70, 27);
             departureTimePicker.TabIndex = 3;
+            departureTimePicker.ValueChanged += departureTimePicker_ValueChanged;
             // 
             // passengerTimePicker
             // 
@@ -86,6 +88,7 @@
             passengerTimePicker.ShowUpDown = true;
             passengerTimePicker.Size = new Size(70, 27);
             passengerTimePicker.TabIndex = 4;
+            passengerTimePicker.ValueChanged += passengerTimePicker_ValueChanged;
             // 
             // label3
             // 
@@ -96,22 +99,21 @@
             label3.TabIndex = 5;
             label3.Text = "Время прибытия пассажира";
             // 
-            // button1
+            // trainStatusLabel
             // 
-            button1.Location = new Point(105, 146);
-            button1.Name = "button1";
-            button1.Size = new Size(191, 29);
-            button1.TabIndex = 6;
-            button1.Text = "Узнать наличие поезда";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            trainStatusLabel.AutoSize = true;
+            trainStatusLabel.Location = new Point(12, 148);
+            trainStatusLabel.Name = "trainStatusLabel";
+            trainStatusLabel.Size = new Size(50, 20);
+            trainStatusLabel.TabIndex = 6;
+            trainStatusLabel.Text = "label4";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(316, 181);
-            Controls.Add(button1);
+            ClientSize = new Size(316, 177);
+            Controls.Add(trainStatusLabel);
             Controls.Add(label3);
             Controls.Add(passengerTimePicker);
             Controls.Add(departureTimePicker);
@@ -132,6 +134,6 @@
         private DateTimePicker departureTimePicker;
         private DateTimePicker passengerTimePicker;
         private Label label3;
-        private Button button1;
+        private Label trainStatusLabel;
     }
 }

@@ -11,7 +11,7 @@ namespace PTSecondLabFirstTask
             this.passengerTimePicker.Value = Properties.Settings.Default.passengerTime >= DateTimePicker.MinimumDateTime ? Properties.Settings.Default.passengerTime : DateTimePicker.MinimumDateTime;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void DisplayTrainStatus()
         {
             DateTime arrivalTime = Convert.ToDateTime(this.arriveTimePicker.Value);
 
@@ -36,9 +36,25 @@ namespace PTSecondLabFirstTask
             Properties.Settings.Default.passengerTime = passengerTime;
             Properties.Settings.Default.Save();
 
-            MessageBox.Show($"Поезд {Logic.GetAnswer(trainArriveH, trainArriveM, trainDepartH, trainDepartM, passArriveH, passArriveM)} стоять на платформе");
+            trainStatusLabel.Text = $"Поезд {Logic.GetAnswer(trainArriveH, trainArriveM, trainDepartH, trainDepartM, passArriveH, passArriveM)} стоять на платформе";
+        }
+
+        private void arriveTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DisplayTrainStatus();
+        }
+
+        private void departureTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DisplayTrainStatus();
+        }
+
+        private void passengerTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DisplayTrainStatus();
         }
     }
+
 
     public class Logic
     {

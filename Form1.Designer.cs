@@ -98,11 +98,11 @@
             // 
             // button1
             // 
-            button1.Location = new Point(137, 146);
+            button1.Location = new Point(105, 146);
             button1.Name = "button1";
-            button1.Size = new Size(159, 29);
+            button1.Size = new Size(191, 29);
             button1.TabIndex = 6;
-            button1.Text = "Узнать наличие";
+            button1.Text = "Узнать наличие поезда";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -119,7 +119,7 @@
             Controls.Add(label1);
             Controls.Add(arriveTimePicker);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Цифровой перрон";
             ResumeLayout(false);
             PerformLayout();
         }

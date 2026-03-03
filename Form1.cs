@@ -5,6 +5,10 @@ namespace PTSecondLabFirstTask
         public Form1()
         {
             InitializeComponent();
+
+            this.arriveTimePicker.Value = Properties.Settings.Default.arrivalTime >= DateTimePicker.MinimumDateTime ? Properties.Settings.Default.arrivalTime : DateTimePicker.MinimumDateTime;
+            this.departureTimePicker.Value = Properties.Settings.Default.departureTime >= DateTimePicker.MinimumDateTime ? Properties.Settings.Default.departureTime : DateTimePicker.MinimumDateTime;
+            this.passengerTimePicker.Value = Properties.Settings.Default.passengerTime >= DateTimePicker.MinimumDateTime ? Properties.Settings.Default.passengerTime : DateTimePicker.MinimumDateTime;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,6 +30,11 @@ namespace PTSecondLabFirstTask
             int passArriveH = passengerTime.Hour;
 
             int passArriveM = passengerTime.Minute;
+
+            Properties.Settings.Default.arrivalTime = arrivalTime;
+            Properties.Settings.Default.departureTime = departureTime;
+            Properties.Settings.Default.passengerTime = passengerTime;
+            Properties.Settings.Default.Save();
 
             MessageBox.Show($"Поезд {Logic.GetAnswer(trainArriveH, trainArriveM, trainDepartH, trainDepartM, passArriveH, passArriveM)} стоять на платформе");
         }
